@@ -11,7 +11,7 @@ from wp_api import WPClient
 from html.parser import HTMLParser
 import re
 
-# Simple HTML stripper
+# Simple HTML stripper 
 class HTMLStripper(HTMLParser):
     def __init__(self):
         super().__init__()
@@ -20,7 +20,7 @@ class HTMLStripper(HTMLParser):
         self.text.append(data)
     def get_text(self):
         return ''.join(self.text).strip()
-
+# removes the Elementor HTML tags for plain text for the description/body
 def strip_html(html):
     stripper = HTMLStripper()
     stripper.feed(html)
@@ -56,3 +56,5 @@ description: |
 """
     print(yaml)
     print("---")
+
+    # hero, language, partner aren't automatically available from the API. 
