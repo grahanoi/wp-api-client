@@ -13,7 +13,7 @@ for post in posts:
 # TODO: Use same description body as the website
 # TODO: Automatically generate the YAML front matter for each post, including the hero image, language, and partner fields.
 # TODO: Implement a function that creats a new page in the Cotedi Repo
-
+# TODO: Content als HTML lassen
 
 from wp_api import WPClient
 from html.parser import HTMLParser
@@ -65,7 +65,7 @@ language:
 description: |
   {content[:200]}...
 ---
-{content}
+{content[:200]}
 """
     print(yaml)
     print("---")

@@ -33,9 +33,9 @@ def main():
     """Run a basic example demonstrating wp_api functionality."""
     
     # Replace these values with your WordPress site details
-    wp_url = "https://example.com"
-    username = "your_username"
-    app_password = "your_app_password"
+    wp_url = "https://imaginatic.es"
+    username = "noirin"
+    app_password = "WmX5 IHp8 5XYN jByj vqD4 nPLN"
     
     logger.info(f"Connecting to WordPress site: {wp_url}")
     
@@ -58,15 +58,6 @@ def main():
         
         for post in posts:
             logger.info(f"Post ID: {post['id']}, Title: {post['title']['rendered']}")
-        
-        # Create a new post (uncomment to run)
-        # logger.info("Creating a new post...")
-        # new_post = client.posts.create(
-        #     title=f"Test Post - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-        #     content="This is a test post created via the WordPress REST API Python Client.",
-        #     status="draft"
-        # )
-        # logger.info(f"Created post with ID: {new_post['id']}")
         
     except WPAPIAuthError as e:
         logger.error(f"Authentication error: {e}")

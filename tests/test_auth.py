@@ -14,14 +14,14 @@ class TestBasicAuth(unittest.TestCase):
     
     def test_authenticate(self):
         """Test BasicAuth authentication."""
-        auth = BasicAuth(username="testuser", password="testpass")
+        auth = BasicAuth(username="noirin", password="CotediNoirin2026")
         session = mock.Mock(spec=requests.Session)
         session.headers = {}
         
         auth.authenticate(session)
         
         # Check that the Authorization header was set correctly
-        auth_string = "testuser:testpass"
+        auth_string = "noirin:CotediNoirin2026"
         encoded_auth = base64.b64encode(auth_string.encode()).decode()
         expected_header = f"Basic {encoded_auth}"
         
@@ -33,14 +33,14 @@ class TestApplicationPasswordAuth(unittest.TestCase):
     
     def test_authenticate(self):
         """Test ApplicationPasswordAuth authentication."""
-        auth = ApplicationPasswordAuth(username="testuser", app_password="app_testpass")
+        auth = ApplicationPasswordAuth(username="noirin", app_password="WmX5 IHp8 5XYN jByj vqD4 nPLN")
         session = mock.Mock(spec=requests.Session)
         session.headers = {}
         
         auth.authenticate(session)
         
         # Check that the Authorization header was set correctly
-        auth_string = "testuser:app_testpass"
+        auth_string = "noirin:WmX5 IHp8 5XYN jByj vqD4 nPLN"
         encoded_auth = base64.b64encode(auth_string.encode()).decode()
         expected_header = f"Basic {encoded_auth}"
         
@@ -87,7 +87,7 @@ class TestOAuth1(unittest.TestCase):
         self.assertNotEqual(session.request, original_request)
         
         # Test the patched method by calling it
-        url = "https://example.com/wp-json/wp/v2/posts"
+        url = "https://imaginatic.es/cotedi/"
         session.request("GET", url)
         
         # Assert original_request was called
