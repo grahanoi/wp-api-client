@@ -17,7 +17,7 @@ for post in posts:
 
 from wp_api import WPClient
 from html.parser import HTMLParser
-import re
+from wp_api.auth import ApplicationPasswordAuth
 
 # Simple HTML stripper 
 class HTMLStripper(HTMLParser):
@@ -33,8 +33,8 @@ def strip_html(html):
     stripper = HTMLStripper()
     stripper.feed(html)
     return stripper.get_text()
-
-client = WPClient(base_url="https://imaginatic.es")
+auth = ApplicationPasswordAuth(username="noirin", app_password="WmX5 IHp8 5XYN jByj vqD4 nPLN")
+client = WPClient(base_url="https://imaginatic.es", auth=auth)
 posts = client.posts.list(status="publish", per_page=5, page=1, orderby="date")
 
 for post in posts:
@@ -43,7 +43,7 @@ for post in posts:
     date      = post['date'][:10]  # just the YYYY-MM-DD part
     content   = strip_html(post['content']['rendered'])
     link      = post['link']
-    #language  = post['language']
+    language  = post['language']
 
     # Fetch author name
     author_id = post['author']
