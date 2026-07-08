@@ -9,9 +9,9 @@ sequenceDiagram
     GH->>GA: Workflow gets triggered
     GA->>WP: REST API request (fetch post content)
     WP-->>GA: Post data (HTML)
-    GA->>GA: Generate Markdown + frontmatter
     GA->>WP: Download hero piece
     WP-->>GA: Image file
+    GA->>GA: Generate Markdown + frontmatter
     GA->>Repo: Create new page folder
     GA->>Repo: Commit & push
 ```
@@ -22,7 +22,7 @@ This pipeline transfers content from a WordPress website into the [cotedi-projec
 1. One-time Migration of Existing Content
 Before going live, all existing content currently on WordPress is fetched (via the WordPress REST API) and converted into the repo's folder structure — each existing post gets its own page folder containing a Markdown file and a hero image. This step runs once, to bring the current state of the WordPress site fully into the new repo.
 
-2. Ongoing Sync of New Content
+1. Ongoing Sync of New Content
 After that, whenever a new post is published on WordPress, the process continues automatically:
 
 A small code snippet added to WordPress watches for when a new post gets published. It's the only piece installed directly in WordPress (e.g. in functions.php or as a small plugin), and it doesn't change any content itself — it simply notifies the outside world that something new was published.[link](https://blog.teamtreehouse.com/hooks-wordpress-actions-filters-examples)
