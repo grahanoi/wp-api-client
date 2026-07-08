@@ -35,21 +35,30 @@ def strip_html(html):
     return stripper.get_text()
 auth = ApplicationPasswordAuth(username="noirin", app_password="WmX5 IHp8 5XYN jByj vqD4 nPLN")
 client = WPClient(base_url="https://imaginatic.es", auth=auth)
-posts = client.posts.list(status="publish", per_page=5, page=1, orderby="date")
+
+# Get published posts
+posts = client.posts.list(status="publish", per_page=1, page=1, orderby="date")
+
+# Get published media items
+media_items = client.media.list(media_type="image", per_page=100, page=1)
 
 for post in posts:
     post_id   = post['id']
     title     = post['title']['rendered']
     date      = post['date'][:10]  # just the YYYY-MM-DD part
-    content   = strip_html(post['content']['rendered'])
+    content   = post['content']['rendered']
     link      = post['link']
-    language  = post['language']
+    # language  = post['language']
 
     # Fetch author name
     author_id = post['author']
     author    = client.users.get(author_id)
     author_name = author['name']
-    media_items = client.media.list()
+
+    # Fetch media items for the post
+    media_items = []
+
+
 
     yaml = f"""---
 title: {title}
@@ -58,14 +67,14 @@ date: {date}
 type: news
 tags:
 - news
-hero: {media_items[0]['source_url'] if media_items else 'No image available'}
+hero: {media_items if media_items else 'No image available'}
 link: {link}
 partner:
 language:
 description: |
   {content[:200]}...
 ---
-{content[:200]}
+{content}
 """
     print(yaml)
     print("---")
