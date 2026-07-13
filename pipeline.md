@@ -36,3 +36,6 @@ This trigger starts the GitHub Actions workflow, which automatically:
 - downloads the hero image
 - creates a new page folder in the repo (same structure as the migration)
 - commits and pushes everything
+
+Read more about the [GitHub Actions workflow](https://shipyard.build/blog/your-first-python-github-action/)
+
